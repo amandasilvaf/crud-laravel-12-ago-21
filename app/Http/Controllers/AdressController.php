@@ -81,7 +81,7 @@ class AdressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $endereco = Adress::find($id);
       
@@ -90,8 +90,10 @@ class AdressController extends Controller
             $endereco->bairro = $request->input('bairro');
             $endereco->cidade = $request->input('cidade');
             $endereco->estado = $request->input('estado');
+            $endereco->user_id = 1;
+            $endereco->save();
      
-        return redirect('/enderecos');
+            return redirect('/enderecos');
     }
 
     /**

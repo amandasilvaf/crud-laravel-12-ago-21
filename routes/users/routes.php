@@ -17,8 +17,8 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::post('/novo', [UsersController::class, 'addUser'])->name('users.add');
 
     
-
 });
+
 Route::get('/enderecos', [AdressController::class, 'index'])->name('enderecos');
 Route::get('/enderecos/novo', [AdressController::class, 'create'])->name('adress.new');
 Route::post('/enderecos/novo', [AdressController::class, 'store'])->name('adress.add');

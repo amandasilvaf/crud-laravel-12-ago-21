@@ -58,8 +58,9 @@
                     </div>
                 </div>
                 <form action="{{(route('adress.update', $endereco->id)) }}"
-                    class="form" id="new_adress">
+                    class="form" id="edit_adress" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-4">
