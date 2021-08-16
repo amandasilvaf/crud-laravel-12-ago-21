@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdressController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\ProfilesController;
 use App\Http\Controllers\Users\PermissionsController;
@@ -12,12 +13,18 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::get('/{id}', [UsersController::class, 'editUser'])->name('users.edit')->where('id', '[0-9]+');
     Route::post('/{id}', [UsersController::class, 'updateUser'])->name('users.update')->where('id', '[0-9]+');
     Route::patch('/{id}/{status}', [UsersController::class, 'changeUserStatus'])->name('users.status')->where('id', '[0-9]+');
-    // método patch é para qnd vou atualizar apenas 1 attr do objeto
     Route::get('/novo', [UsersController::class, 'newUser'])->name('users.new');
     Route::post('/novo', [UsersController::class, 'addUser'])->name('users.add');
 
+    
 });
 
+Route::get('/enderecos', [AdressController::class, 'index'])->name('enderecos');
+Route::get('/enderecos/novo', [AdressController::class, 'create'])->name('adress.new');
+Route::post('/enderecos/novo', [AdressController::class, 'store'])->name('adress.add');
+Route::get('/enderecos/editar/{id}', [AdressController::class, 'edit'])->name('adress.edit')->where('id', '[0-9]+');
+Route::put('/enderecos/editar/{id}', [AdressController::class, 'update'])->name('adress.update')->where('id', '[0-9]+');
+Route::get('/enderecos/deletar/{id}',[AdressController::class, 'destroy'])->name('adress.delete');
 
 
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {

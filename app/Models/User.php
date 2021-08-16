@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Rule;
+use App\Models\Adress;
 
 class User extends Authenticatable
 {
@@ -80,5 +81,10 @@ class User extends Authenticatable
     public function profiles()
     {
         return $this->hasMany('App\Models\Panel\Navigation\UserProfile', 'user_id', 'id');
+    }
+
+    public function adresses()
+    {
+        return $this->hasMany(Adress::class);
     }
 }
