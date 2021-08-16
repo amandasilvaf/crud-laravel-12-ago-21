@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdressController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\ProfilesController;
 use App\Http\Controllers\Users\PermissionsController;
@@ -15,6 +16,8 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::get('/novo', [UsersController::class, 'newUser'])->name('users.new');
     Route::post('/novo', [UsersController::class, 'addUser'])->name('users.add');
 });
+
+// Route::get('/enderecos',[AdressController::class, 'index'])->name('endereco.listar');
 
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {
     Route::get('/', [ProfilesController::class, 'index'])->name('profiles');

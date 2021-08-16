@@ -13,7 +13,7 @@ class AdressController extends Controller
      */
     public function index()
     {
-        //
+        return view('enderecos.index');
     }
 
     /**
