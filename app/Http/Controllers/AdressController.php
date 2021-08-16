@@ -25,7 +25,7 @@ class AdressController extends Controller
      */
     public function create()
     {
-        //
+        return view('adresses.novoEndereco');
     }
 
     /**
@@ -36,7 +36,15 @@ class AdressController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $endereco = new Adress();
+        $endereco->logradouro = $request->input('logradouro');
+        $endereco->numero = $request->input('numero');
+        $endereco->bairro = $request->input('bairro');
+        $endereco->cidade = $request->input('cidade');
+        $endereco->estado = $request->input('estado');
+        $endereco->user_id= 1;
+        $endereco->save();
+        return redirect('/enderecos');
     }
 
     /**
@@ -58,7 +66,12 @@ class AdressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $endereco = Adress::find($id);
+        if (isset($endereco)){
+            return view('adresses.editarEndereco', compact('endereco'));
+        }else{
+            return redirect('/enderecos');   
+        }
     }
 
     /**
@@ -68,9 +81,17 @@ class AdressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-       
+        $endereco = Adress::find($id);
+      
+            $endereco->logradouro = $request->input('logradouro');
+            $endereco->numero = $request->input('numero');
+            $endereco->bairro = $request->input('bairro');
+            $endereco->cidade = $request->input('cidade');
+            $endereco->estado = $request->input('estado');
+     
+        return redirect('/enderecos');
     }
 
     /**
@@ -81,6 +102,10 @@ class AdressController extends Controller
      */
     public function destroy($id)
     {
-        
+        $endereco = Adress::find($id);
+        if(isset($endereco)){
+            $endereco->delete();
+        }
+        return redirect('/enderecos');
     }
 }

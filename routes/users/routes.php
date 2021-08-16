@@ -20,8 +20,11 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
 
 });
 Route::get('/enderecos', [AdressController::class, 'index'])->name('enderecos');
-Route::get('/enderecos/novo', [UsersController::class, 'newUser'])->name('adress.new');
-
+Route::get('/enderecos/novo', [AdressController::class, 'create'])->name('adress.new');
+Route::post('/enderecos/novo', [AdressController::class, 'store'])->name('adress.add');
+Route::get('/enderecos/editar/{id}', [AdressController::class, 'edit'])->name('adress.edit')->where('id', '[0-9]+');
+Route::put('/enderecos/editar/{id}', [AdressController::class, 'update'])->name('adress.update')->where('id', '[0-9]+');
+Route::get('/enderecos/deletar/{id}',[AdressController::class, 'destroy'])->name('adress.delete');
 
 
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {
