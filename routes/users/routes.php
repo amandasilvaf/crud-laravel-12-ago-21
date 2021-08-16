@@ -15,9 +15,14 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::patch('/{id}/{status}', [UsersController::class, 'changeUserStatus'])->name('users.status')->where('id', '[0-9]+');
     Route::get('/novo', [UsersController::class, 'newUser'])->name('users.new');
     Route::post('/novo', [UsersController::class, 'addUser'])->name('users.add');
-});
 
-// Route::get('/enderecos',[AdressController::class, 'index'])->name('endereco.listar');
+    
+
+});
+Route::get('/enderecos', [AdressController::class, 'index'])->name('enderecos');
+Route::get('/enderecos/novo', [UsersController::class, 'newUser'])->name('adress.new');
+
+
 
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {
     Route::get('/', [ProfilesController::class, 'index'])->name('profiles');

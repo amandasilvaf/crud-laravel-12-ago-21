@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Adress;
 
 class AdressController extends Controller
 {
@@ -13,7 +14,8 @@ class AdressController extends Controller
      */
     public function index()
     {
-        return view('enderecos.index');
+        $enderecos = Adress::orderBy('id')->get();
+        return view('adresses.enderecos', compact('enderecos'));
     }
 
     /**
@@ -34,7 +36,7 @@ class AdressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +47,7 @@ class AdressController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -68,7 +70,7 @@ class AdressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
     }
 
     /**
@@ -79,6 +81,6 @@ class AdressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

@@ -40,12 +40,9 @@
                 @include('users.form')
             </div>
         </div>
-       <div class="d-flex flex-column-fluid">
-            <div class="container">
-                @include('adresses.index')
-            </div>
-       </div>
+        
     </div>
+    <a href="{{('enderecos')}}" class="btn btn-primary mr-0">Novo Endereço</a>
 @endsection
 @section('js')
     <script>
@@ -54,4 +51,4 @@
         })
 
     </script>
-@stop
+@endsection
