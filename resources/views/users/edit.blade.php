@@ -38,7 +38,7 @@
         <div class="d-flex flex-column-fluid">
             <div class="container">
                 @include('users.form')
-                <a href="{{route('enderecos')}}" class="btn btn-primary">Endereços</a>
+                <a href="{{route('enderecos', $user->id)}}" class="btn btn-primary">Endereços</a>
             </div>
         </div>
     </div>
