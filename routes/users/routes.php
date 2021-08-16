@@ -12,9 +12,13 @@ Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::get('/{id}', [UsersController::class, 'editUser'])->name('users.edit')->where('id', '[0-9]+');
     Route::post('/{id}', [UsersController::class, 'updateUser'])->name('users.update')->where('id', '[0-9]+');
     Route::patch('/{id}/{status}', [UsersController::class, 'changeUserStatus'])->name('users.status')->where('id', '[0-9]+');
+    // método patch é para qnd vou atualizar apenas 1 attr do objeto
     Route::get('/novo', [UsersController::class, 'newUser'])->name('users.new');
     Route::post('/novo', [UsersController::class, 'addUser'])->name('users.add');
+
 });
+
+
 
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {
     Route::get('/', [ProfilesController::class, 'index'])->name('profiles');
