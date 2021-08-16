@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adress;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AdressController extends Controller
 {
@@ -36,6 +37,23 @@ class AdressController extends Controller
      */
     public function store(Request $request)
     {
+        $mensagens = [
+            'logradouro.required' => 'Informe o logradouro',
+            'numero.required' => 'Informe o número',
+            'numero.max' => 'O número deve conter no máximo 4 caracteres',
+            'bairro.required' => 'Informe o bairro',
+            'cidade.required' => 'Informe a cidade',
+            'estado.required' => "Informe o estado"
+        ];
+
+        $request->validate([
+            'logradouro' => 'required',
+            'numero' => 'required| max:4',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required'
+        ], $mensagens);
+
         $endereco = new Adress();
         $endereco->logradouro = $request->input('logradouro');
         $endereco->numero = $request->input('numero');
@@ -83,6 +101,23 @@ class AdressController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mensagens = [
+            'logradouro.required' => 'Informe o logradouro',
+            'numero.required' => 'Informe o número',
+            'numero.max' => 'O número deve conter no máximo 4 caracteres',
+            'bairro.required' => 'Informe o bairro',
+            'cidade.required' => 'Informe a cidade',
+            'estado.required' => "Informe o estado"
+        ];
+
+        $request->validate([
+            'logradouro' => 'required',
+            'numero' => 'required| max:4',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required'
+        ], $mensagens);
+
         $endereco = Adress::find($id);
       
             $endereco->logradouro = $request->input('logradouro');

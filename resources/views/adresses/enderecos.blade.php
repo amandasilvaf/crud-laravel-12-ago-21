@@ -22,11 +22,12 @@
                         <a href="{{ route('users') }}" class="text-muted">Usuários</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a class="text-muted">Editar</a>
+                        <a class="text-muted">E-code</a>
                     </li>
                     <li class="breadcrumb-item">
-                        {{--  <a class="text-muted">{{ $enderecos->user_id }}</a>  --}}
+                        <a class="text-muted">Editar</a>
                     </li>
+                    
                     <li class="breadcrumb-item">
                         <a class="text-muted">Endereços</a>
                     </li>
