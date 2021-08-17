@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adress;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+
 
 class AdressController extends Controller
 {
@@ -17,8 +17,9 @@ class AdressController extends Controller
 
     public function index($user)
     {
+        $user_id = $user;
         $enderecos = Adress::orderBy('id')->get();
-        return view('adresses.enderecos', compact('enderecos'), ['user_id' => $user]);
+        return view('adresses.enderecos', compact(['enderecos', 'user_id']));
     }
 
 
@@ -27,9 +28,10 @@ class AdressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($user_id)
+    public function create($user)
     {
-        return view('adresses.novoEndereco', ['user_id' => $user_id]);
+        $user_id = $user;
+        return view('adresses.novoEndereco', compact('user_id'));
     }
 
     /**
@@ -38,7 +40,7 @@ class AdressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $user_id)
+    public function store(Request $request, $user)
     {
         $mensagens = [
             'required' => 'Informe o campo :attribute',
@@ -60,9 +62,10 @@ class AdressController extends Controller
         $endereco->bairro = $request->input('bairro');
         $endereco->cidade = $request->input('cidade');
         $endereco->estado = $request->input('estado');
-        $endereco->user_id= $user_id;
+        $endereco->user_id= $user;
         $endereco->save();
-        return redirect('/enderecos/{user}');
+        
+        return redirect()->route('enderecos', $user);
     }
 
     /**
@@ -85,10 +88,11 @@ class AdressController extends Controller
     public function edit($id)
     {
         $endereco = Adress::find($id);
+        $user_id = $endereco->user_id;
         if (isset($endereco)){
-            return view('adresses.editarEndereco', compact('endereco'));
+            return view('adresses.editarEndereco', compact(['endereco', 'user_id']));
         }else{
-            return redirect('enderecos');   
+            return redirect()->route('enderecos', $user_id); 
         }
     }
 
@@ -119,16 +123,17 @@ class AdressController extends Controller
         ], $mensagens);
 
         $endereco = Adress::find($id);
-      
+        $user_id = $endereco->user_id;
+
             $endereco->logradouro = $request->input('logradouro');
             $endereco->numero = $request->input('numero');
             $endereco->bairro = $request->input('bairro');
             $endereco->cidade = $request->input('cidade');
             $endereco->estado = $request->input('estado');
-            $endereco->user_id = 1;
+            $endereco->user_id = $user_id;
             $endereco->save();
      
-            return redirect('/enderecos');
+            return redirect()->route('enderecos', $user_id); 
     }
 
     /**
@@ -140,9 +145,10 @@ class AdressController extends Controller
     public function destroy($id)
     {
         $endereco = Adress::find($id);
+        $user_id = $endereco->user_id;
         if(isset($endereco)){
             $endereco->delete();
         }
-        return redirect('enderecos');
+        return redirect()->route('enderecos', $user_id); 
     }
 }
