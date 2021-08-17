@@ -87,10 +87,11 @@ class AdressController extends Controller
     public function edit($id)
     {
         $endereco = Adress::find($id);
+        $user_id = $endereco->user_id;
         if (isset($endereco)){
-            return view('adresses.editarEndereco', compact('endereco'));
+            return view('adresses.editarEndereco', compact(['endereco', 'user_id']));
         }else{
-            return redirect()->route('enderecos'); 
+            return redirect()->route('enderecos', $user_id); 
         }
     }
 
@@ -121,16 +122,17 @@ class AdressController extends Controller
         ], $mensagens);
 
         $endereco = Adress::find($id);
-      
+        $user_id = $endereco->user_id;
+
             $endereco->logradouro = $request->input('logradouro');
             $endereco->numero = $request->input('numero');
             $endereco->bairro = $request->input('bairro');
             $endereco->cidade = $request->input('cidade');
             $endereco->estado = $request->input('estado');
-            $endereco->user_id = 1;
+            $endereco->user_id = $user_id;
             $endereco->save();
      
-            return redirect('/enderecos');
+            return redirect()->route('enderecos', $user_id); 
     }
 
     /**
@@ -142,9 +144,10 @@ class AdressController extends Controller
     public function destroy($id)
     {
         $endereco = Adress::find($id);
+        $user_id = $endereco->user_id;
         if(isset($endereco)){
             $endereco->delete();
         }
-        return redirect('/enderecos');
+        return redirect()->route('enderecos', $user_id); 
     }
 }
