@@ -25,7 +25,7 @@
                         <a href="{{ route('users') }}" class="text-muted">E-code</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('enderecos') }}" class="text-muted">Endereços</a>
+                        <a href="{{ route('enderecos', $user_id) }}" class="text-muted">Endereços</a>
                     </li>
                     <li class="breadcrumb-item">
                         <a class="text-muted">Novo</a>
@@ -42,7 +42,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Cadastrar Endereço</h3>
                     <div class="card-toolbar">
-                        <a href="{{ route('enderecos') }}" class="btn btn-primary font-weight-bolder">
+                        <a href="{{ route('enderecos', $user_id) }}" class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -57,7 +57,7 @@
                             </span>Voltar</a>
                     </div>
                 </div>
-                <form action="{{ route('adress.add') }}"
+                <form action="{{ route('adress.add', $user_id) }}"
                     class="form" id="new_adress" method="POST">
                     @csrf
                     <div class="card-body">

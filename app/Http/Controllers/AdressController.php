@@ -13,10 +13,11 @@ class AdressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user)
     {
+        $user_id = $user;
         $enderecos = Adress::orderBy('id')->get();
-        return view('adresses.enderecos', compact('enderecos'));
+        return view('adresses.enderecos', compact(['enderecos', 'user_id']));
     }
 
     /**
@@ -24,9 +25,10 @@ class AdressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user)
     {
-        return view('adresses.novoEndereco');
+        $user_id = $user;
+        return view('adresses.novoEndereco', compact('user_id'));
     }
 
     /**
@@ -35,7 +37,7 @@ class AdressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user)
     {
         $mensagens = [
             'logradouro.required' => 'Informe o logradouro',
@@ -60,9 +62,9 @@ class AdressController extends Controller
         $endereco->bairro = $request->input('bairro');
         $endereco->cidade = $request->input('cidade');
         $endereco->estado = $request->input('estado');
-        $endereco->user_id= 1;
+        $endereco->user_id= $user;
         $endereco->save();
-        return redirect('/enderecos');
+        return redirect()->route('enderecos', $user);
     }
 
     /**
@@ -88,7 +90,7 @@ class AdressController extends Controller
         if (isset($endereco)){
             return view('adresses.editarEndereco', compact('endereco'));
         }else{
-            return redirect('/enderecos');   
+            return redirect()->route('enderecos'); 
         }
     }
 
