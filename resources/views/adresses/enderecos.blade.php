@@ -44,7 +44,7 @@
                         <h3 class="card-label">Endereços</h3>
                     </div>
                     <div class="card-toolbar">
-                    <a href="{{ route('adress.new') }}" class="btn btn-primary font-weight-bolder">
+                    <a href="{{ route('adress.new', $user_id) }}" class="btn btn-primary font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
+                    {{-- {{ dd($user_id)}} --}}
                     @if (count($enderecos) > 0)
                         <table class="table table-ordered table-hover">
                             <thead>

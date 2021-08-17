@@ -13,20 +13,23 @@ class AdressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function index($user)
     {
         $enderecos = Adress::orderBy('id')->get();
-        return view('adresses.enderecos', compact('enderecos'));
+        return view('adresses.enderecos', compact('enderecos'), ['user_id' => $user]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_id)
     {
-        return view('adresses.novoEndereco');
+        return view('adresses.novoEndereco', ['user_id' => $user_id]);
     }
 
     /**
@@ -35,15 +38,12 @@ class AdressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user_id)
     {
         $mensagens = [
-            'logradouro.required' => 'Informe o logradouro',
-            'numero.required' => 'Informe o número',
+            'required' => 'Informe o campo :attribute',
             'numero.max' => 'O número deve conter no máximo 4 caracteres',
-            'bairro.required' => 'Informe o bairro',
-            'cidade.required' => 'Informe a cidade',
-            'estado.required' => "Informe o estado"
+            
         ];
 
         $request->validate([
@@ -60,9 +60,9 @@ class AdressController extends Controller
         $endereco->bairro = $request->input('bairro');
         $endereco->cidade = $request->input('cidade');
         $endereco->estado = $request->input('estado');
-        $endereco->user_id= 1;
+        $endereco->user_id= $user_id;
         $endereco->save();
-        return redirect('/enderecos');
+        return redirect('/enderecos/{user}');
     }
 
     /**
@@ -88,7 +88,7 @@ class AdressController extends Controller
         if (isset($endereco)){
             return view('adresses.editarEndereco', compact('endereco'));
         }else{
-            return redirect('/enderecos');   
+            return redirect('enderecos');   
         }
     }
 
@@ -143,6 +143,6 @@ class AdressController extends Controller
         if(isset($endereco)){
             $endereco->delete();
         }
-        return redirect('/enderecos');
+        return redirect('enderecos');
     }
 }
