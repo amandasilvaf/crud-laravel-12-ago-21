@@ -76,7 +76,6 @@
                                 {{$user_id}} 
                                 @foreach ($enderecos as $e)
                                 <tr>
-                                    @if($user_id == $e->user_id)
                                         <td>{{$e->id}}</td>
                                         <td>{{$e->logradouro}}</td>
                                         <td>{{$e->numero}}</td>
@@ -88,7 +87,7 @@
                                             <a href="{{ route('adress.edit', $e->id)}}" class="btn btn-warning btn-sm">Editar</a>
                                             <a href="{{ route('adress.delete', $e->id)}}" class="btn btn-danger btn-sm">Excluir</a>
                                         </td>
-                                    @endif
+                                    
                                 </tr>
                                 @endforeach
                                 
