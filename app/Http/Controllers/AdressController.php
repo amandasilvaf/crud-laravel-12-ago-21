@@ -99,7 +99,6 @@ class AdressController extends Controller
             $endereco->bairro = $request->input('bairro');
             $endereco->cidade = $request->input('cidade');
             $endereco->estado = $request->input('estado');
-            $endereco->user_id = $user_id;
             $endereco->save();
      
             return redirect()->route('enderecos', $user_id); 

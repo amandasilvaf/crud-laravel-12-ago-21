@@ -54,7 +54,7 @@
                 </div>
                 <div class="card-body">
                     {{-- {{ dd($user_id)}} --}}
-                    @if ($enderecos)
+                    @if (count($enderecos) > 0)
                         <table class="table table-ordered table-hover">
                             <thead>
                                 <tr>
