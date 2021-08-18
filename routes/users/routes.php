@@ -29,7 +29,6 @@ Route::prefix('enderecos')->group(function(){
 });
 
 
-
 Route::prefix('perfis')->middleware('verify.permissions')->group(function () {
     Route::get('/', [ProfilesController::class, 'index'])->name('profiles');
     Route::get('/list', [ProfilesController::class, 'profilesList'])->name('profiles.list');

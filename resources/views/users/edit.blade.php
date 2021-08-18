@@ -28,7 +28,7 @@
                             <a class="text-muted">Editar</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a class="text-muted">{{ $user->name }}</a>
+                            <a class="text-muted">Nome Usuario</a>
                         </li>
                     </ul>
                 </div>
