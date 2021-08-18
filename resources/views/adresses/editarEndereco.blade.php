@@ -22,7 +22,10 @@
                         </a>
                     </li>
                      <li class="breadcrumb-item">
-                        <a href="{{ route('users') }}" class="text-muted">E-code</a>
+                        <a href="{{ route('users') }}" class="text-muted">Usuários</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="text-muted">Nome usuário</a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="{{ route('enderecos', $user_id ?? '') }}" class="text-muted">Endereços</a>

@@ -22,12 +22,8 @@
                         <a href="{{ route('users') }}" class="text-muted">Usuários</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a class="text-muted">Nome Usuário</a>
+                        <a class="text-muted">Nome usuário</a>
                     </li>
-                    <li class="breadcrumb-item">
-                        <a class="text-muted">Editar</a>
-                    </li>
-                    
                     <li class="breadcrumb-item">
                         <a class="text-muted">Endereços</a>
                     </li>
