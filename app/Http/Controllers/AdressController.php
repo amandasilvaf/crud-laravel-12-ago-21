@@ -13,7 +13,7 @@ class AdressController extends Controller
     {
         $user_id = $user;
         // $enderecos = Adress::orderBy('id')->get(); // sem filtro
-        $enderecos = DB::table('adresses')->where('user_id', '=', $user)->get();
+        $enderecos = DB::table('adresses')->where('user_id', '=', $user)->orderBy('id')->get();
         //dd($enderecos);
         return view('adresses.enderecos', compact(['enderecos', 'user_id']));
     }
