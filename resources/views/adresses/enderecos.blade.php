@@ -42,7 +42,6 @@
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                     <div class="card-title">
                         <h3 class="card-label">Endereços</h3>
-                        {{-- {{dd($user_id)}} --}}
                     </div>
                     <div class="card-toolbar">
                             <a href="{{ route('adress.new', $user_id) }}" class="btn btn-primary font-weight-bolder">
@@ -58,8 +57,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
-                    @if (count($enderecos) > 0)
+                    {{-- {{ dd($user_id)}} --}}
+                    @if ($enderecos)
                         <table class="table table-ordered table-hover">
                             <thead>
                                 <tr>
@@ -124,7 +123,5 @@
 </div>
 @endsection
 @section('js')
-<script>
-  
-</script>
+
 @stop

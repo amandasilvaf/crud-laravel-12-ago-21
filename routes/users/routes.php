@@ -25,7 +25,6 @@ Route::prefix('enderecos')->group(function(){
     Route::get('/editar/{id}', [AdressController::class, 'edit'])->name('adress.edit')->where('id', '[0-9]+');
     Route::put('/editar/{id}', [AdressController::class, 'update'])->name('adress.update')->where('id', '[0-9]+');
     Route::get('/deletar/{id}',[AdressController::class, 'destroy'])->name('adress.delete');
-
 });
 
 
